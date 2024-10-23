@@ -1,21 +1,21 @@
 <x-app-layout>
     <div class="container mx-auto py-8">
         <div class="w-full max-w-lg mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            <h2 class="text-2xl font-bold mb-4">Edit Category</h2>
+            <h2 class="text-2xl font-bold mb-4">Edit Brand</h2>
 
-            <form action="{{ route('admin.categories.update', $category->id) }}" method="POST">
+            <form action="{{ route('admin.brands.update', $brand->id) }}" method="POST">
                 @csrf
                 @method('PATCH')
 
                 <div class="grid grid-cols-1 gap-5">
-                    {{-- category Name --}}
-                    <x-input name="name" label="Category Name" type="text" value="{{ $category->name }}" />
-                    {{--  category Description --}}
-                    <x-input name="description" label="Category Description" type="text"
-                        value="{{ $category->description ?? '' }}" />
-                    {{-- category image --}}
-                    <x-input name="image" label="Category Description" type="text"
-                        value="{{ $category->image ?? '' }}" />
+                    {{-- brand Name --}}
+                    <x-input name="name" label="brand Name" type="text" value="{{ $brand->name }}" />
+                    {{--  brand Description --}}
+                    <x-input name="description" label="brand Description" type="text"
+                        value="{{ $brand->description ?? '' }}" />
+                    {{-- brand image --}}
+                    <x-input name="image" label="brand Description" type="text"
+                        value="{{ $brand->image ?? '' }}" />
 
 
                     {{-- submit button --}}

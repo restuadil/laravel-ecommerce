@@ -19,12 +19,14 @@ return new class extends Migration
             $table->integer('price');
             $table->integer('stock');
             $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('brand_id');
             $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
 
         Schema::table('products', function (Blueprint $table) {
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
         });
     }
 

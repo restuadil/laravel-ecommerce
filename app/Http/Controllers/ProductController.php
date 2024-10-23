@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Brand;
 use App\Models\Category;
 
 class ProductController extends Controller
@@ -27,7 +28,11 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.products.create', ['categories' => $categories]);
+        $brands = Brand::all();
+        return view('admin.products.create', [
+            'categories' => $categories,
+            'brands' => $brands
+        ]);
     }
 
     /**
@@ -58,7 +63,8 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $category = Category::all();
-        return view('admin.products.edit', ['product' => $product, 'categories' => $category]);
+        $brands = Brand::all();
+        return view('admin.products.edit', ['product' => $product, 'categories' => $category, 'brands' => $brands]);
     }
 
     /**
@@ -78,5 +84,7 @@ class ProductController extends Controller
     {
         $data = Product::findOrFail($product->id);
         $data->delete();
+
+        return redirect()->route('admin.products.index');
     }
 }

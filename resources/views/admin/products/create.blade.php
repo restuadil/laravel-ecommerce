@@ -10,12 +10,16 @@
                     <!-- Product Name -->
                     <x-input name="name" label="Product Name" type="text" value="{{ $product->name ?? '' }}" />
 
-                    <!-- Product Price -->
-                    <x-input name="price" label="Product Price" type="number" value="{{ $product->price ?? '' }}" />
+                    <div class="flex flex-row gap-5">
+                        <!-- Product Price -->
+                        <x-input name="price" label="Product Price" type="number"
+                            value="{{ $product->price ?? '' }}" />
 
-                    <!-- Product Stock -->
-                    <x-input name="stock" label="Product Stock" type="number" value="{{ $product->stock ?? '' }}" />
+                        <!-- Product Stock -->
+                        <x-input name="stock" label="Product Stock" type="number"
+                            value="{{ $product->stock ?? '' }}" />
 
+                    </div>
                     <!-- Product Description -->
                     <x-input name="description" label="Product Description" type="text"
                         value="{{ $product->description ?? '' }}" />
@@ -24,10 +28,12 @@
                     <x-input name="image" label="Product Image" type="text" value="{{ $product->image ?? '' }}" />
 
                     <!-- Product Status -->
-                    <div class="flex items-center">
+                    <div class="flex items-center ">
+                        <!-- Hidden input untuk menangani unchecked state -->
+                        <input type="hidden" name="is_active" value="0">
                         <input type="checkbox" name="is_active" id="is_active" value="1"
                             class="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                            {{ old('is_active', $product->is_active ?? true) ? 'checked' : '' }}>
+                            {{ old('is_active', $product->is_active ?? false) ? 'checked' : '' }}>
                         <label for="is_active" class="ml-2 block text-sm text-gray-700">
                             Active
                         </label>
@@ -42,6 +48,17 @@
                             @endforeach
                         </select>
                     </div>
+                    {{-- Brand Product --}}
+                    <div>
+                        <label for="brand_id" class="block text-sm font-medium text-gray-700">Category</label>
+                        <select name="brand_id" id="brand_id"
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            @foreach ($brands as $brand)
+                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
 
                     <div class="flex justify-center">
                         <button type="submit"

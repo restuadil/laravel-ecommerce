@@ -17,6 +17,8 @@
                         <th class="py-3 px-6 text-left">Product Name</th>
                         <th class="py-3 px-6 text-center">Price</th>
                         <th class="py-3 px-6 text-center">Stock</th>
+                        <th class="py-3 px-6 text-center">Brand </th>
+                        <th class="py-3 px-6 text-center">Category </th>
                         <th class="py-3 px-6 text-center">Status</th>
                         <th class="py-3 px-6 text-center">Actions</th>
                     </tr>
@@ -43,6 +45,12 @@
                                 <div class="text-sm">{{ $product->stock }}</div>
                             </td>
                             <td class="py-3 px-6 text-center">
+                                <div class="text-sm">{{ $product->brand->name }}</div>
+                            </td>
+                            <td class="py-3 px-6 text-center">
+                                <div class="text-sm">{{ $product->category->name }}</div>
+                            </td>
+                            <td class="py-3 px-6 text-center">
                                 @if ($product->is_active)
                                     <span
                                         class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">Active</span>
@@ -60,7 +68,8 @@
                                         class="w-4 mr-2 transform hover:text-green-500 hover:scale-110">
                                         <i class='bx bx-low-vision bx-sm'></i>
                                     </a>
-                                    <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST">
+                                    <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST"
+                                        onsubmit="return confirm('Are you sure?');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"

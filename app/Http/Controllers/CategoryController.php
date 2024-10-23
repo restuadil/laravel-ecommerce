@@ -72,5 +72,7 @@ class CategoryController extends Controller
     {
         $data = Category::findOrFail($category->id);
         $data->delete();
+
+        return redirect()->route('admin.categories.index');
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
@@ -37,7 +38,15 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
         'edit' => 'admin.products.edit',
         'update' => 'admin.products.update',
         'destroy' => 'admin.products.destroy',
-
+    ]);
+    Route::resource('admin/brands', BrandController::class)->names([
+        'index' => 'admin.brands.index',
+        'create' => 'admin.brands.create',
+        'store' => 'admin.brands.store',
+        'show' => 'admin.brands.show',
+        'edit' => 'admin.brands.edit',
+        'update' => 'admin.brands.update',
+        'destroy' => 'admin.brands.destroy',
     ]);
 });
 require __DIR__ . '/auth.php';
