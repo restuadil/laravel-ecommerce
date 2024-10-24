@@ -3,14 +3,13 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DiscoverController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
-
+Route::get('/', [DiscoverController::class, 'index'])->name('discover');
 Route::get('admin', [DashboardController::class, 'index'])->middleware(['auth', 'verified', 'admin'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -47,6 +46,10 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
         'edit' => 'admin.brands.edit',
         'update' => 'admin.brands.update',
         'destroy' => 'admin.brands.destroy',
+    ]);
+    Route::resource('admin/users', UserController::class)->names([
+        'index' => 'admin.users.index',
+        'show' => 'admin.users.show',
     ]);
 });
 require __DIR__ . '/auth.php';

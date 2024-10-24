@@ -3,6 +3,13 @@
     <div class="container mx-auto py-8">
         <div class="flex justify-between items-center mb-4">
             <h1 class="text-2xl font-semibold text-gray-800">Product Management</h1>
+            {{-- flash message --}}
+            @if (session()->has('success'))
+                <div class="bg-green-100 border border-green-400 text-green-700 px-16 py-3 rounded relative">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             <a href="{{ route('admin.products.create') }}"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Add New Product

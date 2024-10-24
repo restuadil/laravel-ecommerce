@@ -15,9 +15,11 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
+            UserSeeder::class,
             CategorySeeder::class,
             BrandSeeder::class,
             ProductSeeder::class,
+            ProductCommentSeeder::class,
         ]);
         User::factory()->create([
             'name' => 'Admin',
